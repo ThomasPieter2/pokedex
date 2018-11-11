@@ -31,22 +31,26 @@ let showResult = (data) => {
 };
 
 let createDiv = (pokelist) => {
-    var newDiv, newImg;
+    var newDiv, newImg, newP, url;
 
     for (var i = 0; i < pokelist.length; i++) {
         //Automatisch generen van DIV's voor iedere pokemon
+        // newDiv = document.createElement('button'); 
         newDiv = document.createElement('div');
         newDiv.id = pokelist[i].name;
-        newDiv.className = 'test';
-        newDiv.innerHTML = pokelist[i].name;
+        newDiv.className = 'div_pokemon';
 
         //Automatisch afbeelding instellen voor de pokemon
         newImg = document.createElement('img');
-        var url = "http://static.pokemonpets.com/images/monsters-images-800-800/" + (i + 1) + "-" + pokelist[i].name + ".png";
+        url = "http://static.pokemonpets.com/images/monsters-images-800-800/" + (i + 1) + "-" + pokelist[i].name + ".png";
         newImg.src = url;
         newImg.className = 'pokemon_img';
 
+        newP = document.createElement('p');
+        newP.innerHTML = pokelist[i].name.charAt(0).toUpperCase() + pokelist[i].name.slice(1);
+
         newDiv.appendChild(newImg);
+        newDiv.appendChild(newP);
         document.getElementById('main').appendChild(newDiv);
     }
 }
