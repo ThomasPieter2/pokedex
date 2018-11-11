@@ -1,0 +1,35 @@
+/* FONTS */
+@font-face {
+    font-family: "Pokemon Hollow";
+    src: url("../fonts/Pokemon_Hollow.ttf") format("woff2")
+}
+
+@font-face {
+    font-family: "Pokemon Hollow";
+    src: url("../fonts/Pokemon_Solid.ttf") format("woff2")
+}
+
+html {}
+
+.test {
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 250px;
+    display: flex;
+}
+
+.pokemon_img {
+    width: 200px;
+    height: 200px;
+}
+
+/*------------------------------------*\
+  #OBJECTS
+\*------------------------------------*/
+.o-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 79.5em;
+    /* 79.5 * 16px = 1272 */
+}
