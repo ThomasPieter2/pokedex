@@ -19,27 +19,33 @@ html {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* button {
-    all: unset;
-} */
 h1 {
     margin: -32px 0px 16px 0px;
 }
 
-.div_pokemon {
+/*------------------------------------*\
+  #COMPONENTS
+\*------------------------------------*/
+.c-pokemon {
     width: 33%;
     height: 250px;
     display: inline-block;
-    margin-bottom: 48px;
-    float: left;
+    margin: 24px 0;
     text-align: center;
 }
 
-.pokemon_img {
-    display: block;
+.c-pokemon__info {
     margin: auto;
-    width: 250px;
-    height: 250px;
+}
+
+.pokemon_img {
+    vertical-align: middle;
+    display: inline-block;
+    margin: auto;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    max-height: 250px;
 }
 
 /*------------------------------------*\

@@ -31,26 +31,28 @@ let showResult = (data) => {
 };
 
 let createDiv = (pokelist) => {
-    var newDiv, newImg, newP, url;
+    var newDivFull, newDivSmall, newImg, newP, url;
 
     for (var i = 0; i < pokelist.length; i++) {
-        //Automatisch generen van DIV's voor iedere pokemon
-        // newDiv = document.createElement('button'); 
-        newDiv = document.createElement('div');
-        newDiv.id = pokelist[i].name;
-        newDiv.className = 'div_pokemon';
+        newDivFull = document.createElement('div');
+        newDivFull.id = pokelist[i].name;
+        newDivFull.className = 'c-pokemon';
 
-        //Automatisch afbeelding instellen voor de pokemon
         newImg = document.createElement('img');
         url = "http://static.pokemonpets.com/images/monsters-images-800-800/" + (i + 1) + "-" + pokelist[i].name + ".png";
         newImg.src = url;
         newImg.className = 'pokemon_img';
+        newImg.alt = pokelist[i].name;
 
         newP = document.createElement('p');
         newP.innerHTML = pokelist[i].name.charAt(0).toUpperCase() + pokelist[i].name.slice(1);
 
-        newDiv.appendChild(newImg);
-        newDiv.appendChild(newP);
-        document.getElementById('main').appendChild(newDiv);
+        newDivSmall = document.createElement('div');
+        newDivSmall.className = "c-pokemon__info";
+        newDivSmall.appendChild(newImg);
+        newDivSmall.appendChild(newP);
+
+        newDivFull.appendChild(newDivSmall)
+        document.getElementById('main').appendChild(newDivFull);
     }
 }
