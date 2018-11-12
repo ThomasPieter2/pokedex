@@ -12,7 +12,7 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
+    font-family: "Pokemon Hollow", Helvetica, arial, sans-serif;
     color: #20223A;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -23,22 +23,47 @@ h1 {
     margin: -32px 0px 16px 0px;
 }
 
+p {
+    line-height: 1;
+    margin: 0;
+}
+
 /*------------------------------------*\
   #COMPONENTS
 \*------------------------------------*/
-.c-pokemon {
+.c-pokemon-div {
+    z-index: 1;
+    display: inline-block;
     width: 33%;
     height: 250px;
-    display: inline-block;
-    margin: 24px 0;
+    padding: 24px 0;
+}
+
+.c-button-pokemon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-pokemon {
     text-align: center;
 }
 
 .c-pokemon__info {
     margin: auto;
+    font-size: 32px;
 }
 
-.pokemon_img {
+.c-pokemon__info--div {
+    z-index: 0;
+    position: absolute;
+    margin: auto;
+    width: 75%;
+    height: 500px;
+    border: solid 1px black;
+}
+
+.c-pokemon_img {
     vertical-align: middle;
     display: inline-block;
     margin: auto;
@@ -61,6 +86,21 @@ h1 {
     margin-right: auto;
     max-width: 79.5em;
     /* 79.5 * 16px = 1272 */
+}
+
+.o-button-reset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
 }
 
 /*------------------------------------*\

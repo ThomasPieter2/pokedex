@@ -3,7 +3,7 @@
 // API: https://pokeapi.co/api/v2/pokemon/
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 1 We will query the API with longitude and latitude.
+
     getAPI();
 });
 
@@ -31,17 +31,26 @@ let showResult = (data) => {
 };
 
 let createDiv = (pokelist) => {
-    var newDivFull, newDivSmall, newImg, newP, url;
+    var testDiv, newBtn, newDivFull, newDivSmall, newImg, newP, url;
 
     for (var i = 0; i < pokelist.length; i++) {
+        testDiv = document.createElement('div');
+        testDiv.className = 'c-pokemon-div';
+
+        newBtn = document.createElement('button');
+        newBtn.onclick = function() {
+            showInfoPokemon(i)
+        };
+        newBtn.id = pokelist[i].name;
+        newBtn.className = 'o-button-reset c-button-pokemon';
+
         newDivFull = document.createElement('div');
-        newDivFull.id = pokelist[i].name;
         newDivFull.className = 'c-pokemon';
 
         newImg = document.createElement('img');
         url = "http://static.pokemonpets.com/images/monsters-images-800-800/" + (i + 1) + "-" + pokelist[i].name + ".png";
         newImg.src = url;
-        newImg.className = 'pokemon_img';
+        newImg.className = 'c-pokemon_img';
         newImg.alt = pokelist[i].name;
 
         newP = document.createElement('p');
@@ -52,7 +61,14 @@ let createDiv = (pokelist) => {
         newDivSmall.appendChild(newImg);
         newDivSmall.appendChild(newP);
 
-        newDivFull.appendChild(newDivSmall)
-        document.getElementById('main').appendChild(newDivFull);
+        newDivFull.appendChild(newDivSmall);
+        newBtn.appendChild(newDivFull);
+        testDiv.appendChild(newBtn);
+        document.getElementById('main').appendChild(testDiv);
     }
+}
+
+let showInfoPokemon = (pokemon) => {
+    var div = document.getElementById('info');
+    div.style.zIndex = 10;
 }
