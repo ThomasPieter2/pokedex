@@ -32,11 +32,12 @@ p {
   #COMPONENTS
 \*------------------------------------*/
 .c-pokemon-div {
+    position: relative;
     z-index: 1;
     display: inline-block;
     width: 33%;
-    height: 250px;
-    padding: 24px 0;
+    height: auto;
+    margin: 24px 0;
 }
 
 .c-button-pokemon {
@@ -57,9 +58,11 @@ p {
 .c-pokemon__info--div {
     z-index: 0;
     position: absolute;
-    margin: auto;
-    width: 75%;
-    height: 500px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 80%;
+    height: 600px;
     border: solid 1px black;
 }
 
