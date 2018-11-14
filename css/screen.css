@@ -13,7 +13,7 @@ html {
     font-size: 16px;
     line-height: 1.5;
     font-family: "Pokemon Hollow", Helvetica, arial, sans-serif;
-    color: #20223A;
+    color: black;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -64,6 +64,7 @@ p {
     width: 80%;
     height: 600px;
     border: solid 1px black;
+    background-color: red;
 }
 
 .c-pokemon_img {

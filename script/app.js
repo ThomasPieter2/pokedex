@@ -34,12 +34,15 @@ let createDiv = (pokelist) => {
     var testDiv, newBtn, newDivFull, newDivSmall, newImg, newP, url;
 
     // for (var i = 0; i < pokelist.length; i++) {
-    for (var i = 0; i < 30; i++) {
+    for (var i = 0; i < pokelist.length; i++) {
         testDiv = document.createElement('div');
         testDiv.className = 'c-pokemon-div';
 
         newBtn = document.createElement('button');
         newBtn.id = pokelist[i].name;
+        newBtn.addEventListener('click', function() {
+            showInfoPokemon(this.id, i);
+        });
         newBtn.className = 'o-button-reset c-button-pokemon';
 
         newDivFull = document.createElement('div');
@@ -64,11 +67,10 @@ let createDiv = (pokelist) => {
         testDiv.appendChild(newBtn);
         document.getElementById('main').appendChild(testDiv);
     }
-
 }
 
-let showInfoPokemon = (pokelist) => {
+let showInfoPokemon = (pokelist, id) => {
     var div = document.getElementById('info');
-    console.log(pokelist.name);
+    console.log(pokelist, id);
     div.style.zIndex = 10;
 }
