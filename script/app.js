@@ -3,7 +3,6 @@
 // API: https://pokeapi.co/api/v2/pokemon/
 
 document.addEventListener('DOMContentLoaded', function() {
-
     getAPI();
 });
 
@@ -71,6 +70,15 @@ let createDiv = (pokelist) => {
 
 let showInfoPokemon = (pokelist, id) => {
     var div = document.getElementById('info');
-    console.log(pokelist, id);
-    div.style.zIndex = 10;
+    //console.log(pokelist, id);
+    document.addEventListener('click', function(e) {
+        console.log(e.target.getAttribute('id'), div.getAttribute('id'));
+        if (e.target.getAttribute('id') != div.getAttribute('id')) {
+            if (div.style.zIndex == 0) {
+                div.style.zIndex = 10;
+            } else {
+                div.style.zIndex = 0;
+            }
+        }
+    });
 }
