@@ -77,6 +77,65 @@ p {
     max-height: 250px;
 }
 
+.c-header {
+    font-family: "Pokemon Solid";
+    font-size: 48px;
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+}
+
+/*
+    Component: Input
+    ---
+    Class to put on all input="text" like form inputs
+*/
+.c-input-reset {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
+}
+
+.c-input {
+    border: 1px solid black;
+    border-radius: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 65%;
+    font-family: inherit;
+    color: inherit;
+    line-height: 24px;
+    padding: 36px;
+    outline: none;
+}
+
+.c-input:focus {
+    border-color: red;
+    box-shadow: 0 0 0 3px red;
+}
+
+.c-label {
+    display: inline-block;
+    width: 15%;
+}
+
+.c-list {}
+
+.c-list--pokemon {
+    line-height: 2;
+    font-family: helvetica;
+    list-style-type: none;
+}
+
 /*------------------------------------*\
   #OBJECTS
 \*------------------------------------*/
@@ -88,8 +147,7 @@ p {
 .o-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 79.5em;
-    /* 79.5 * 16px = 1272 */
+    max-width: 85em;
 }
 
 .o-button-reset {
@@ -107,13 +165,454 @@ p {
     -webkit-appearance: none;
 }
 
-/*------------------------------------*\
-  #COMPONENTS
-\*------------------------------------*/
-.c-header {
-    font-family: "Pokemon Solid";
-    font-size: 48px;
+/*
+    Objects: Layout
+    ---
+    The layout object provides us with a column-style layout system. This object
+    contains the basic structural elements, but classes should be complemented
+    with width utilities
+*/
+.o-layout {
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.o-layout__item {
+    width: 100%;
+}
+
+/* gutter modifiers, these affect o-layout__item too */
+.o-layout--gutter {
+    margin: 0 -12px;
+}
+
+.o-layout--gutter>.o-layout__item {
+    padding: 0 12px;
+}
+
+.o-layout--gutter-sm {
+    margin: 0 -6px;
+}
+
+.o-layout--gutter-sm>.o-layout__item {
+    padding: 0 6px;
+}
+
+.o-layout--gutter-lg {
+    margin: 0 -24px;
+}
+
+.o-layout--gutter-lg>.o-layout__item {
+    padding: 0 24px;
+}
+
+.o-layout--gutter-xl {
+    margin: 0 -48px;
+}
+
+.o-layout--gutter-xl>.o-layout__item {
+    padding: 0 48px;
+}
+
+/* reverse horizontal row modifier */
+.o-layout--row-reverse {
+    flex-direction: row-reverse;
+}
+
+/* Horizontal alignment modifiers*/
+.o-layout--justify-start {
+    justify-content: flex-start;
+}
+
+.o-layout--justify-end {
+    justify-content: flex-end;
+}
+
+.o-layout--justify-center {
     justify-content: center;
+}
+
+.o-layout--justify-space-around {
+    justify-content: space-around;
+}
+
+.o-layout--justify-space-evenly {
+    justify-content: space-evenly;
+}
+
+.o-layout--justify-space-between {
+    justify-content: space-between;
+}
+
+/* Vertical alignment modifiers */
+.o-layout--align-start {
+    align-items: flex-start;
+}
+
+.o-layout--align-end {
+    align-items: flex-end;
+}
+
+.o-layout--align-center {
+    align-items: center;
+}
+
+.o-layout--align-baseline {
+    align-items: baseline;
+}
+
+/* Vertical alignment modifiers that only work if there is one than one flex item */
+.o-layout--align-content-start {
+    align-content: start;
+}
+
+.o-layout--align-content-end {
+    align-content: end;
+}
+
+.o-layout--align-content-center {
+    align-content: center;
+}
+
+.o-layout--align-content-space-around {
+    align-content: space-around;
+}
+
+.o-layout--align-content-space-between {
+    align-content: space-between;
+}
+
+/*------------------------------------*\
+#UTILITIES
+\*------------------------------------*/
+/*
+    Utilities: color
+    ---
+    Utility classes to put specific colors onto elements
+*/
+.u-color-neutral-base {
+    color: Silver;
+}
+
+.u-color-neutral-dark {
+    color: Black;
+}
+
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+.u-pt-clear {
+    padding-top: 0 !important;
+}
+
+.u-mb-clear {
+    margin-bottom: 0 !important;
+}
+
+.u-mb-xs {
+    margin-bottom: 4px !important;
+}
+
+.u-mb-sm {
+    margin-bottom: 8px !important;
+}
+
+.u-mb-md {
+    margin-bottom: 16px !important;
+}
+
+.u-mb-lg {
+    margin-bottom: 32px !important;
+}
+
+.u-mb-xl {
+    margin-bottom: 48px !important;
+}
+
+/*
+    Utilities: max-width
+    ---
+    Utility classes to put specific max widths onto elements
+*/
+.u-max-width-xs {
+    max-width: 27em !important;
+}
+
+.u-max-width-sm {
+    max-width: 39em !important;
+}
+
+.u-max-width-md {
+    max-width: 50em !important;
+}
+
+.u-max-width-lg {
+    max-width: 85em !important;
+}
+
+.u-max-width-none {
+    max-width: none !important;
+}
+
+/*
+    Utilities: align
+    ---
+    Utility classes align text or components
+*/
+.u-align-text-center {
+    text-align: center;
+}
+
+.u-align-center {
+    margin: 0 auto;
+}
+
+/*
+    Utilities: text
+    Utility classes to create smaller or bigger test
+*/
+.u-text-sm {
+    font-size: 14px;
+}
+
+/*
+    Utility: Widths
+    ---
+    Utility classes to put specific widths onto elements
+    Will be mostly used on o-layout__item
+*/
+.u-width-auto {
+    width: auto !important;
+}
+
+.u-1-of-2 {
+    width: 50% !important;
+}
+
+.u-1-of-3 {
+    width: 33.3333333333% !important;
+}
+
+.u-2-of-3 {
+    width: 66.6666666667% !important;
+}
+
+.u-1-of-4 {
+    width: 25% !important;
+}
+
+.u-3-of-4 {
+    width: 75% !important;
+}
+
+.u-1-of-5 {
+    width: 20% !important;
+}
+
+.u-2-of-5 {
+    width: 40% !important;
+}
+
+.u-3-of-5 {
+    width: 60% !important;
+}
+
+.u-4-of-5 {
+    width: 80% !important;
+}
+
+.u-1-of-6 {
+    width: 16.6666666667% !important;
+}
+
+.u-5-of-6 {
+    width: 83.3333333333% !important;
+}
+
+@media (min-width: 576px) {
+    .u-1-of-2-bp1 {
+        width: 50% !important;
+    }
+
+    .u-1-of-3-bp1 {
+        width: 33.3333333333% !important;
+    }
+
+    .u-2-of-3-bp1 {
+        width: 66.6666666667% !important;
+    }
+
+    .u-1-of-4-bp1 {
+        width: 25% !important;
+    }
+
+    .u-3-of-4-bp1 {
+        width: 75% !important;
+    }
+
+    .u-1-of-5-bp1 {
+        width: 20% !important;
+    }
+
+    .u-2-of-5-bp1 {
+        width: 40% !important;
+    }
+
+    .u-3-of-5-bp1 {
+        width: 60% !important;
+    }
+
+    .u-4-of-5-bp1 {
+        width: 80% !important;
+    }
+
+    .u-1-of-6-bp1 {
+        width: 16.6666666667% !important;
+    }
+
+    .u-5-of-6-bp1 {
+        width: 83.3333333333% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .u-1-of-2-bp2 {
+        width: 50% !important;
+    }
+
+    .u-1-of-3-bp2 {
+        width: 33.3333333333% !important;
+    }
+
+    .u-2-of-3-bp2 {
+        width: 66.6666666667% !important;
+    }
+
+    .u-1-of-4-bp2 {
+        width: 25% !important;
+    }
+
+    .u-3-of-4-bp2 {
+        width: 75% !important;
+    }
+
+    .u-1-of-5-bp2 {
+        width: 20% !important;
+    }
+
+    .u-2-of-5-bp2 {
+        width: 40% !important;
+    }
+
+    .u-3-of-5-bp2 {
+        width: 60% !important;
+    }
+
+    .u-4-of-5-bp2 {
+        width: 80% !important;
+    }
+
+    .u-1-of-6-bp2 {
+        width: 16.6666666667% !important;
+    }
+
+    .u-5-of-6-bp2 {
+        width: 83.3333333333% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .u-1-of-2-bp3 {
+        width: 50% !important;
+    }
+
+    .u-1-of-3-bp3 {
+        width: 33.3333333333% !important;
+    }
+
+    .u-2-of-3-bp3 {
+        width: 66.6666666667% !important;
+    }
+
+    .u-1-of-4-bp3 {
+        width: 25% !important;
+    }
+
+    .u-3-of-4-bp3 {
+        width: 75% !important;
+    }
+
+    .u-1-of-5-bp3 {
+        width: 20% !important;
+    }
+
+    .u-2-of-5-bp3 {
+        width: 40% !important;
+    }
+
+    .u-3-of-5-bp3 {
+        width: 60% !important;
+    }
+
+    .u-4-of-5-bp3 {
+        width: 80% !important;
+    }
+
+    .u-1-of-6-bp3 {
+        width: 16.6666666667% !important;
+    }
+
+    .u-5-of-6-bp3 {
+        width: 83.3333333333% !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .u-1-of-2-bp4 {
+        width: 50% !important;
+    }
+
+    .u-1-of-3-bp4 {
+        width: 33.3333333333% !important;
+    }
+
+    .u-2-of-3-bp4 {
+        width: 66.6666666667% !important;
+    }
+
+    .u-1-of-4-bp4 {
+        width: 25% !important;
+    }
+
+    .u-3-of-4-bp4 {
+        width: 75% !important;
+    }
+
+    .u-1-of-5-bp4 {
+        width: 20% !important;
+    }
+
+    .u-2-of-5-bp4 {
+        width: 40% !important;
+    }
+
+    .u-3-of-5-bp4 {
+        width: 60% !important;
+    }
+
+    .u-4-of-5-bp4 {
+        width: 80% !important;
+    }
+
+    .u-1-of-6-bp4 {
+        width: 16.6666666667% !important;
+    }
+
+    .u-5-of-6-bp4 {
+        width: 83.3333333333% !important;
+    }
 }

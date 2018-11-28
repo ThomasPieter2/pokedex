@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     getAPI();
 });
 
-function getAPI() {
+let getAPI = () => {
     var url = "https://pokeapi.co/api/v2/pokemon/";
 
     fetch(url).then(function(response) {
@@ -21,7 +21,7 @@ function getAPI() {
 }
 
 let showResult = (data) => {
-    var pokelist = []
+    var pokelist = [];
     for (var i = 0; i < data.length; i++) {
         pokelist.push(data[i]);
     }
@@ -30,53 +30,53 @@ let showResult = (data) => {
 };
 
 let createDiv = (pokelist) => {
-    var testDiv, newBtn, newDivFull, newDivSmall, newImg, newP, url;
+    var divMain, btnPokemon, newDivFull, divPokemon, imgPokemon, pPokemon, url;
 
-    // for (var i = 0; i < pokelist.length; i++) {
     for (var i = 0; i < pokelist.length; i++) {
-        testDiv = document.createElement('div');
-        testDiv.className = 'c-pokemon-div';
+        divMain = document.createElement('div');
+        divMain.className = 'c-pokemon-div';
 
-        newBtn = document.createElement('button');
-        newBtn.id = pokelist[i].name;
-        newBtn.addEventListener('click', function() {
-            showInfoPokemon(this.id, i);
+        btnPokemon = document.createElement('button');
+        btnPokemon.id = pokelist[i].name;
+        btnPokemon.addEventListener('click', function() {
+            showInfoPokemon(this.id);
         });
-        newBtn.className = 'o-button-reset c-button-pokemon';
+        btnPokemon.className = 'o-button-reset c-button-pokemon';
 
         newDivFull = document.createElement('div');
         newDivFull.className = 'c-pokemon';
 
-        newImg = document.createElement('img');
+        imgPokemon = document.createElement('img');
         url = "http://static.pokemonpets.com/images/monsters-images-800-800/" + (i + 1) + "-" + pokelist[i].name + ".png";
-        newImg.src = url;
-        newImg.className = 'c-pokemon_img';
-        newImg.alt = pokelist[i].name;
+        imgPokemon.src = url;
+        imgPokemon.className = 'c-pokemon_img';
+        imgPokemon.alt = pokelist[i].name;
 
-        newP = document.createElement('p');
-        newP.innerHTML = pokelist[i].name.charAt(0).toUpperCase() + pokelist[i].name.slice(1);
+        pPokemon = document.createElement('p');
+        pPokemon.innerHTML = pokelist[i].name.charAt(0).toUpperCase() + pokelist[i].name.slice(1);
 
-        newDivSmall = document.createElement('div');
-        newDivSmall.className = "c-pokemon__info";
-        newDivSmall.appendChild(newImg);
-        newDivSmall.appendChild(newP);
+        divPokemon = document.createElement('div');
+        divPokemon.className = "c-pokemon__info";
+        divPokemon.appendChild(imgPokemon);
+        divPokemon.appendChild(pPokemon);
 
-        newDivFull.appendChild(newDivSmall);
-        newBtn.appendChild(newDivFull);
-        testDiv.appendChild(newBtn);
-        document.getElementById('main').appendChild(testDiv);
+        newDivFull.appendChild(divPokemon);
+        btnPokemon.appendChild(newDivFull);
+        divMain.appendChild(btnPokemon);
+        document.getElementById('main').appendChild(divMain);
     }
 }
 
-let showInfoPokemon = (pokelist, id) => {
+let showInfoPokemon = (pokelist) => {
     var div = document.getElementById('info');
-    //console.log(pokelist, id);
     document.addEventListener('click', function(e) {
         console.log(e.target.getAttribute('id'), div.getAttribute('id'));
-        if (e.target.getAttribute('id') != div.getAttribute('id')) {
+        console.log(pokelist);
+        if ((e.target.getAttribute('id') != div.getAttribute('id')) && (e.target.getAttribute('id') != 'null')) {
             if (div.style.zIndex == 0) {
                 div.style.zIndex = 10;
-            } else {
+                var pokemon = e.target.getAttribute('id');
+            } else if (div.style.zIndex == 10) {
                 div.style.zIndex = 0;
             }
         }
