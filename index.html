@@ -22,32 +22,19 @@
     <link rel="stylesheet" href="css/screen.css">
 </head>
 
-<body class="o-container">
-    <header class="o-row">
-        <div class="c-header">
-            <h1>Pokédex</h1>
+<body>
+    <div class="o-row">
+        <header class="o-container">
+            <div class="c-header">
+                <h1>Pokédex</h1>
+            </div>
+        </header>
+        <div class="o-container">
+            <div id="main" class="o-layout">
+                <div id="info" class="c-pokemon__info--div"></div>
+            </div>
         </div>
-    </header>
-
-    <div>
-        <p class="">
-            <label for="username">
-                Name:
-            </label>
-            <input class="c-input" type="text" name="txtName" id="txtName" readonly>
-        </p>
-        <p class="">
-            <label for="username">
-                ID:
-            </label>
-            <input class="c-input" type="text" name="txtId" id="txtId" readonly>
-        </p>
     </div>
-
-    <div id="main">
-        <div id="info" class="c-pokemon__info--div"></div>
-    </div>
-
 </body>
 
 </html>
