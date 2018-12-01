@@ -7,45 +7,37 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 let getAPI = () => {
-    var url = "https://pokeapi.co/api/v2/pokemon/";
-
+    var url = "https://thppokedex.azurewebsites.net/api/v1/pokemon/";
     fetch(url).then(function (response) {
-            //console.log(response);
             return response.json();
         })
         .then(function (json) {
-            console.log(json);
-            var data = json.results;
-            showResult(data);
+            var sorted = json.sort((a, b) => {
+                return a.id - b.id;
+            });
+            console.log(sorted);
+            createDiv(sorted);
         });
 }
 
-let showResult = (data) => {
-    var pokelist = [];
-    for (var i = 0; i < data.length; i++) {
-        pokelist.push(data[i]);
-    }
-    console.log(pokelist);
-    createDiv(pokelist);
-};
-
 let createDiv = (pokelist) => {
-    var divMain, btnPokemon, divPokemon, imgPokemon, pPokemon, url;
+    var divMain, btnPokemon, imgPokemon, pPokemon, url;
 
     // for (var i = 0; i < pokelist.length; i++) {
     for (var i = 0; i < 30; i++) {
         divMain = document.createElement('div');
+        divMain.id = pokelist[i].name;
         divMain.className = 'o-layout__item o-layout__gutter u-1-of-3-bp1 u-1-of-3-bp2 u-1-of-3-bp3 c-pokemon';
 
         btnPokemon = document.createElement('button');
-        btnPokemon.id = pokelist[i].name;
+        btnPokemon.id = i //pokelist[i].name;
         btnPokemon.addEventListener('click', function () {
             showInfoPokemon(this.id);
         });
         btnPokemon.className = 'o-button-reset c-button-pokemon';
 
         imgPokemon = document.createElement('img');
-        url = "http://static.pokemonpets.com/images/monsters-images-800-800/" + (i + 1) + "-" + pokelist[i].name + ".png";
+        url = "http://static.pokemonpets.com/images/monsters-images-800-800/" + pokelist[i].id + "-" + pokelist[i].name + ".png";
         imgPokemon.src = url;
         imgPokemon.className = 'c-pokemon_img';
         imgPokemon.alt = pokelist[i].name;
@@ -55,25 +47,57 @@ let createDiv = (pokelist) => {
 
         btnPokemon.appendChild(imgPokemon);
         btnPokemon.appendChild(pPokemon);
-
         divMain.appendChild(btnPokemon);
-
         document.getElementById('main').appendChild(divMain);
     }
 }
 
-let showInfoPokemon = (pokelist) => {
-    var div = document.getElementById('info');
-    document.addEventListener('click', function (e) {
-        console.log(e.target.getAttribute('id'), div.getAttribute('id'));
-        console.log(pokelist);
-        if ((e.target.getAttribute('id') != div.getAttribute('id')) && (e.target.getAttribute('id') != 'null')) {
-            if (div.style.zIndex == 0) {
-                div.style.zIndex = 10;
-                var pokemon = e.target.getAttribute('id');
-            } else if (div.style.zIndex == 10) {
-                div.style.zIndex = 0;
-            }
+let showInfoPokemon = (pokemon) => {
+    var div = document.getElementById('tooninfo');
+    div.style.zIndex = 1;
+    div.style.visibility = "visible";
+
+    getData(pokemon);
+
+    document.addEventListener("dblclick", function (e) {
+        if (e.target.getAttribute('id') != div.getAttribute('id')) {
+            div.style.zIndex = -1;
+            div.style.visibility = "hidden";
         }
     });
+
+
+    // document.addEventListener("keyup", function (e) {
+    //     if (e.key == "Escape") {
+    //         div.style.zIndex = -1;
+    //         div.style.visibility = "hidden";
+    //     }
+    // });
+}
+
+
+let vulGegevensIn = (pokemon) => {
+    document.getElementById("txtName").value = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+    document.getElementById("txtId").value = pokemon.id;
+    document.getElementById("txtHeight").value = pokemon.height;
+    document.getElementById("txtWeight").value = pokemon.weight;
+    imgPokemon = document.getElementById("imgPokemon")
+    imgPokemon.src = pokemon.url;
+    imgPokemon.className = 'c-pokemon_img';
+    imgPokemon.alt = pokemon.name;
+    console.log("Gegevens ingevuld");
+}
+
+let getData = (id) => {
+    var url = "https://thppokedex.azurewebsites.net/api/v1/pokemon/";
+    fetch(url).then(function (response) {
+            return response.json();
+        })
+        .then(function (json) {
+            var sorted = json.sort((a, b) => {
+                return a.id - b.id;
+            });
+            var pokemon = sorted[id];
+            vulGegevensIn(pokemon);
+        });
 }
