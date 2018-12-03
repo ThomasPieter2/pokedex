@@ -39,7 +39,7 @@ let createDiv = (pokelist) => {
     for (var i = 0; i < 30; i++) {
         divMain = document.createElement('div');
         divMain.id = pokelist[i].name;
-        divMain.className = 'o-layout__item o-layout__gutter u-1-of-3-bp1 u-1-of-3-bp2 u-1-of-3-bp3 c-pokemon';
+        divMain.className = 'o-layout__item o-layout__gutter-sm u-1-of-3-bp1 u-1-of-3-bp2 u-1-of-3-bp3 c-pokemon';
 
         btnPokemon = document.createElement('button');
         btnPokemon.id = i
@@ -67,13 +67,15 @@ let showInfoPokemon = (pokemon) => {
     var div = document.getElementById('tooninfo');
     div.style.zIndex = 1;
     div.style.visibility = "visible";
+    document.getElementById("main").style.backgroundColor = "#fff";
 
     getData(pokemon);
 
     document.addEventListener("dblclick", function (e) {
         if (e.target.getAttribute('id') != div.getAttribute('id')) {
-            div.style.zIndex = -1;
             div.style.visibility = "hidden";
+            div.style.zIndex = -1;
+            document.getElementById("main").style.backgroundColor = "var(--color-bg)";
         }
     });
     // Met escape knop het info venster sluiten
@@ -119,23 +121,27 @@ let getInfo = (pokemon) => {
 
 let animationHeight = (pokemon, max, type) => {
     var elem = document.getElementById("isLoading" + type);
+    var elem2 = document.getElementById("" + type);
     elem.style.width = '0%';
 
     var width = 1;
     var id = setInterval(frame, 10);
     var maxPokemon;
     if (type == "height") {
-        elem.innerHTML = pokemon.height;
+        elem2.innerHTML = pokemon.height + "/" + max;
         maxPokemon = (pokemon.height / max) * 100;
     } else {
-        elem.innerHTML = pokemon.weight;
+        elem2.innerHTML = pokemon.weight + "/" + max;
         maxPokemon = (pokemon.weight / max) * 100;
     }
+
+    console.log(maxPokemon);
 
     function frame() {
         if (width >= maxPokemon) {
             clearInterval(id);
         } else {
+            console.log("test");
             width++;
             elem.style.width = width + '%';
         }
