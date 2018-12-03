@@ -67,15 +67,26 @@ let showInfoPokemon = (pokemon) => {
     var div = document.getElementById('tooninfo');
     div.style.zIndex = 1;
     div.style.visibility = "visible";
-    document.getElementById("main").style.backgroundColor = "#fff";
-
+    document.getElementById("main").style.filter = "blur(8px)";
     getData(pokemon);
+
+
+    // div.body.addEventListener("click", function () {
+    //     div.style.visibility = "hidden";
+    //     div.style.zIndex = -1;
+    //     document.getElementById("main").style.filter = "";
+    // })
+
+    // document.addEventListener("click", function (event) {
+    //     event.stopPropagation();
+    // });
+
 
     document.addEventListener("dblclick", function (e) {
         if (e.target.getAttribute('id') != div.getAttribute('id')) {
             div.style.visibility = "hidden";
             div.style.zIndex = -1;
-            document.getElementById("main").style.backgroundColor = "var(--color-bg)";
+            document.getElementById("main").style.filter = "";
         }
     });
     // Met escape knop het info venster sluiten
