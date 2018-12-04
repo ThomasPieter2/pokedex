@@ -70,7 +70,6 @@ let showInfoPokemon = (pokemon) => {
     document.getElementById("main").style.filter = "blur(8px)";
     getData(pokemon);
 
-
     // div.body.addEventListener("click", function () {
     //     div.style.visibility = "hidden";
     //     div.style.zIndex = -1;
@@ -103,7 +102,7 @@ let vulGegevensIn = (pokemon, info) => {
     document.getElementById("txtName").value = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     document.getElementById("txtId").value = pokemon.id;
 
-    imgPokemon = document.getElementById("imgPokemon")
+    var imgPokemon = document.getElementById("imgPokemon")
     imgPokemon.src = pokemon.url;
     imgPokemon.className = 'c-pokemon_img--div';
     imgPokemon.alt = pokemon.name;
