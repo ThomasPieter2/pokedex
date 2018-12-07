@@ -70,13 +70,13 @@ let showInfoPokemon = (pokemon) => {
     document.getElementById("main").style.filter = "blur(8px)";
     getData(pokemon);
 
-    // div.body.addEventListener("click", function () {
+    // document.body.addEventListener("click", function () {
     //     div.style.visibility = "hidden";
     //     div.style.zIndex = -1;
     //     document.getElementById("main").style.filter = "";
     // })
 
-    // document.addEventListener("click", function (event) {
+    // div.addEventListener("click", function (event) {
     //     event.stopPropagation();
     // });
 
