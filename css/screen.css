@@ -14,7 +14,7 @@
 /* #region Variables */
 :root {
     /* colors */
-    --color-bg: black;
+    --color-bg: white;
     /*#17a2b8;*/
     --color-bg--div: rgba(255, 255, 255, 0.315);
     /*#177db8;*/
@@ -224,7 +224,7 @@ p {
     width: 1%;
     position: absolute;
     height: 45px;
-    background-color: yellowgreen;
+    background-color: yellow;
     border-radius: 8px;
 }
 
@@ -282,6 +282,7 @@ p {
 }
 
 .c-header {
+    margin-top: 8px;
     padding: 8px;
     text-shadow: -3px 0 #2a75bb,
         0 3px #2a75bb,
@@ -291,11 +292,8 @@ p {
     font-family: "Pokemon Solid";
     font-size: 32px;
     display: flex;
-    justify-content: space-between;
     justify-content: center;
 }
-
-
 
 @media (min-width: 576px) {
     .c-pokemon__info--div {
@@ -310,6 +308,7 @@ p {
 
 @media (min-width: 768px) {
     .c-header {
+        margin-top: 0;
         font-size: 48px;
     }
 }
