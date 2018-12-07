@@ -35,11 +35,10 @@ let getAPI = () => {
 let createDiv = (pokelist) => {
     var divMain, btnPokemon, imgPokemon, pPokemon;
 
-    //for (var i = 0; i < pokelist.length; i++) {
-    for (var i = 0; i < 30; i++) {
+    for (var i = 0; i < pokelist.length; i++) {
         divMain = document.createElement('div');
         divMain.id = pokelist[i].name;
-        divMain.className = 'o-layout__item o-layout__gutter-sm u-1-of-3-bp1 u-1-of-3-bp2 u-1-of-3-bp3 c-pokemon';
+        divMain.className = 'o-layout__item o-layout--gutter-sm u-1-of-3-bp1 u-1-of-3-bp2 u-1-of-3-bp3 c-pokemon';
 
         btnPokemon = document.createElement('button');
         btnPokemon.id = i
