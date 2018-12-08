@@ -34,7 +34,6 @@ let getAPI = () => {
 
 let createDiv = (pokelist) => {
     var divMain, btnPokemon, imgPokemon, pPokemon;
-
     for (var i = 0; i < pokelist.length; i++) {
         divMain = document.createElement('div');
         divMain.id = pokelist[i].name;
@@ -63,39 +62,33 @@ let createDiv = (pokelist) => {
 }
 
 let showInfoPokemon = (pokemon) => {
-    var div = document.getElementById('tooninfo');
-    div.style.zIndex = 1;
-    div.style.visibility = "visible";
+    var tooninfo = document.getElementById('tooninfo'),
+        html = document.getElementById("html"),
+        body = document.getElementById("body"),
+        fixed = document.getElementById("isFixed");
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    fixed.className = "c-fixed";
+
+    tooninfo.style.zIndex = 1;
+    tooninfo.style.visibility = "visible";
     document.getElementById("main").style.filter = "blur(8px)";
     getData(pokemon);
 
-    // document.body.addEventListener("click", function () {
-    //     div.style.visibility = "hidden";
-    //     div.style.zIndex = -1;
-    //     document.getElementById("main").style.filter = "";
-    // })
+    fixed.addEventListener("click", function () {
+        tooninfo.style.visibility = "hidden";
+        tooninfo.style.zIndex = -1;
+        document.getElementById("main").style.filter = "";
+        html.style.overflow = "";
+        body.style.overflow = "";
+        fixed.className = "";
+    })
 
-    // div.addEventListener("click", function (event) {
-    //     event.stopPropagation();
-    // });
-
-
-    document.addEventListener("dblclick", function (e) {
-        if (e.target.getAttribute('id') != div.getAttribute('id')) {
-            div.style.visibility = "hidden";
-            div.style.zIndex = -1;
-            document.getElementById("main").style.filter = "";
-        }
+    tooninfo.addEventListener("click", function (event) {
+        event.stopPropagation();
     });
-    // Met escape knop het info venster sluiten
-    // document.addEventListener("keyup", function (e) {
-    //     if (e.key == "Escape") {
-    //         div.style.zIndex = -1;
-    //         div.style.visibility = "hidden";
-    //     }
-    // });
 }
-
 
 let vulGegevensIn = (pokemon, info) => {
     document.getElementById("txtName").value = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
@@ -105,7 +98,6 @@ let vulGegevensIn = (pokemon, info) => {
     imgPokemon.src = pokemon.url;
     imgPokemon.className = 'c-pokemon_img--div';
     imgPokemon.alt = pokemon.name;
-    console.log("Gegevens ingevuld");
 
     var maxH = info[0],
         maxW = info[1];
@@ -144,13 +136,10 @@ let animationHeight = (pokemon, max, type) => {
         maxPokemon = (pokemon.weight / max) * 100;
     }
 
-    console.log(maxPokemon);
-
     function frame() {
         if (width >= maxPokemon) {
             clearInterval(id);
         } else {
-            console.log("test");
             width++;
             elem.style.width = width + '%';
         }
