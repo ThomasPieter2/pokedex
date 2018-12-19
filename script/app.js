@@ -48,6 +48,9 @@ let createDiv = (pokelist) => {
 
         imgPokemon = document.createElement('img');
         imgPokemon.src = pokelist[i].url;
+        imgPokemon.onerror = function () {
+            imgPokemon.src = "https://cdn.browshot.com/static/images/not-found.png";
+        };
         imgPokemon.className = 'c-pokemon_img';
         imgPokemon.alt = pokelist[i].name;
 
@@ -73,6 +76,7 @@ let showInfoPokemon = (pokemon) => {
 
     tooninfo.style.zIndex = 1;
     tooninfo.style.visibility = "visible";
+    document.getElementById("main").style.transition = "filter 0.1s";
     document.getElementById("main").style.filter = "blur(8px)";
     getData(pokemon);
 
@@ -96,6 +100,9 @@ let vulGegevensIn = (pokemon, info) => {
 
     var imgPokemon = document.getElementById("imgPokemon")
     imgPokemon.src = pokemon.url;
+    imgPokemon.onerror = function () {
+        imgPokemon.src = "https://cdn.browshot.com/static/images/not-found.png";
+    };
     imgPokemon.className = 'c-pokemon_img--div';
     imgPokemon.alt = pokemon.name;
 
